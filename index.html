@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>アンケートフォーム</title>
+    <title>カウンセリングフォーム</title>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
         /* 右端の細いナビ（固定） */
@@ -635,57 +635,8 @@
     </div>
 
     <div class="container">
-        <h1><span class="small-text">ホームネイルサロンROSARIUM</span><br>アンケートフォーム</h1>
-        <div class="info-text">以下全て入力後【アンケート送信】ボタンを押してください。</div>
-
-        <div class="label">　　お名前　（漢字）<span class="required">必須</span></div>
-        <textarea id="message" rows="1" placeholder="入力してください"></textarea> <!-- メッセージ入力フィールド -->
-
-        <div class="label">　　お名前　（フリガナ）<span class="required">必須</span></div>
-        <textarea id="message2" rows="1" placeholder="入力してください"></textarea> <!-- メッセージ入力フィールド -->
-
-        <div class="label">　　誕生日（西暦）<span class="required">必須</span></div>
-        <div class="birth-row">
-            <select id="birthYear" class="birth-select" aria-label="西暦（年）">
-                <option value="">西暦</option>
-            </select>
-            <select id="birthMonth" class="birth-select" aria-label="月">
-                <option value="">月</option>
-            </select>
-            <select id="birthDay" class="birth-select" aria-label="日">
-                <option value="">日</option>
-            </select>
-        </div>
-        <!-- 送信互換のため隠しフィールド（YYYY-MM-DD） -->
-        <input type="hidden" id="message3" />
-
-        <div class="label">　　電話番号<span class="required">必須</span></div>
-        <input id="message4" type="tel" inputmode="tel" autocomplete="tel" placeholder="例）09012345678"
-            pattern="^0[\d-]{9,13}$" title="先頭は0、半角数字で入力してください" />
-
-        <div class="label">　　ご住所<span class="required">必須</span></div>
-
-        <!-- 郵便番号＋検索 -->
-        <div class="zip-row">
-            <input id="zipCode" type="text" inputmode="numeric" pattern="\d{3}-?\d{4}" placeholder="例）123-4567"
-                aria-label="郵便番号">
-            <button type="button" class="zip-search-btn" onclick="searchAddressByZip()">住所検索</button>
-        </div>
-        <div id="zipHelp" class="zip-help">郵便番号を入力して「住所検索」をタップしてください。</div>
-
-        <!-- 自動入力される項目 -->
-        <div class="addr-row">
-            <input id="addrPref" type="text" placeholder="都道府県（自動入力）" aria-label="都道府県">
-            <input id="addrCity" type="text" placeholder="市区町村・町域（自動入力）" aria-label="市区町村・町域">
-        </div>
-
-        <!-- ユーザーが入力する項目 -->
-        <div class="addr-street-row">
-            <input id="addrStreet" type="text" placeholder="丁目・番地・号・建物名" aria-label="丁目・番地・号・建物名">
-        </div>
-
-        <!-- 送信互換：合成済みのフル住所を入れる（submitFormはこの値を読む） -->
-        <input type="hidden" id="message5" />
+        <h1><span class="small-text">ホームネイルサロンROSARIUM</span><br>カウンセリングフォーム</h1>
+        <div class="info-text">以下全て入力後【送信】ボタンを押してください。</div>
 
         <!-- 施術中（単一選択） -->
         <div class="label">　　施術中<span class="required">必須</span><br>（複数回答可）</div>
@@ -884,7 +835,7 @@
         <div class="label">備考</div>
         <textarea id="message2" rows="4" placeholder="メッセージを入力してください"></textarea>
 
-        <button class="submit-button" onclick="submitForm()" div id="section-message">アンケート送信</button>
+        <button class="submit-button" onclick="submitForm()" div id="section-message">送信</button>
     </div>
 
     <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script> <!-- LIFF SDKの読み込み -->
@@ -1414,11 +1365,6 @@
             // tabakoValue（吸う/吸わない）, tabakodottiValue（紙タバコ/電子タバコ）
 
             // ===== 必須チェック =====
-            if (!nameKanji) return alert('「お名前（漢字）」を入力してください。');
-            if (!nameKana) return alert('「お名前（フリガナ）」を入力してください。');
-            if (!birthYmd) return alert('「誕生日（西暦）」を入力してください。');
-            if (!tel) return alert('「電話番号」を入力してください。');
-            if (!address) return alert('「ご住所」を入力してください。');
 
             if (!chanceValue) return alert('「施術中」のご希望をお選びください。');
             if (!reasonValues.length) return alert('「当店を選んでくださった理由」をお選びください。');
@@ -1515,17 +1461,6 @@
 
             const msg =
                 `≪カウンセリング≫
-
-【お名前（漢字）】
-・${nameKanji}
-【お名前（フリガナ）】
-・${nameKana}
-【誕生日（西暦）】
-・${birthYmd}
-【電話番号】
-・${tel}
-【ご住所】
-・${address}
 
 【施術中のご希望】
 ${toLines(chanceValue)}
